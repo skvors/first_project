@@ -1,0 +1,95 @@
+
+
+Перегрузка методов              уровень 12 лекция 3
+
+
+public void print();
+public void print2(); 	Так можно. Два метода имеют уникальные имена.
+
+public void print();
+public void print(int n); 	И так можно. Два метода имеют уникальные имена (сигнатуры).
+
+public void print(int n, int n2);
+public void print(int n); 	Все еще уникальные методы.
+
+public int print(int a);
+public void print(int n); 	А так нельзя. Методы не уникальные, хоть и возвращают разные типы.
+
+public int print(int a, long b);
+public long print(long b, int a); 	А так – можно. Параметры методов уникальные.
+
+----------------------------------------------------------
+
+Продолжение перегрузки методов                   15 уровень, 3 лекция
+
+class Cat
+{
+    public static void print(int n)
+    {
+        System.out.println(n);
+    }
+    public static void print(short n)
+    {
+        System.out.println(n);
+    }
+    public static void print(Integer n)
+    {
+        System.out.println(n);
+    }
+    public static void print(String s)
+    {
+        System.out.println(s);
+    }
+    public static void main(String[] args)
+    {
+        Cat.print(1);
+        Cat.print((byte)1);
+        Cat.print("1");
+        Cat.print(null);
+    }
+}
+
+В первом случае 1 имеет тип int, у нас есть 100% совпадение метода,
+который принимает int. Будет вызван первый void print(int n).
+
+Во втором случае, у нас нет метода, который принимает byte. Но есть два метода,
+которые принимают short и int. По стандарту расширения типов,
+byte сначала будет расширен до short, а уж затем расширен до int.
+Вердикт – будет вызван метода void print(short n).
+
+В третьем случае у нас есть 100% совпадение метода, который принимает String.
+Будет вызван метод void print(String s).
+
+В четвертом случае у нас неопределенность. null не имеет определенного типа,
+компилятор откажется компилировать этот код. В таком случае нужно написать Cat.print((Integer)null),
+чтобы вызвать третий метод и Cat.print((String)null), чтобы вызвать четвертый.
+
+
+
+class Cat
+{
+    public static void print(Object o)
+    {
+        System.out.println(o);
+    }
+    public static void print(String s)
+    {
+        System.out.println(s);
+    }
+
+    public static void main(String[] args)
+    {
+        Cat.print(1);
+        Cat.print(null);
+    }
+}
+
+В первом случае int будет расширен до Integer, а так как нет метода для Integer,
+то вызовется наиболее подходящий метод, т.е. метод void print(Object o)
+
+Во втором случае, ошибки компиляции не будет и вызовется метод void print(String s),
+что несколько не очевидно.
+
+ !!! Лучше всего в таких случаях указать оператор преобразования типа, как в случае с (byte), чтобы точно знать, какой метод вызовется.
+
+ !!! В процессе определения метода, который нужно вызвать, типы могут только расширяться, но не сужаться.

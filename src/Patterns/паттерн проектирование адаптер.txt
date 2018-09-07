@@ -1,0 +1,168 @@
+
+Паттерн проектирования адаптер           //19 уровень, 1 лекция
+
+/*
+TableAdapter
+
+Измени класс TableAdapter так, чтобы он адаптировал ATable к BTable.
+Метод getHeaderText должен возвращать такую строку «[username] : tablename«.
+
+Пример, «[Amigo] : DashboardTable«.
+*/
+
+public class Solution {
+    public static void main(String[] args) {
+        //это пример вывода
+        ATable aTable = new ATable() {
+            @Override
+            public String getCurrentUserName() {
+                return "Amigo";
+            }
+
+            @Override
+            public String getTableName() {
+                return "DashboardTable";
+            }
+        };
+
+        BTable table = new TableAdapter(aTable);
+        System.out.println(table.getHeaderText());
+    }
+
+    public static class TableAdapter implements BTable     //собственно сам класс адаптер
+    {
+        private ATable aTable;
+        public TableAdapter(ATable aTable)
+        {
+            this.aTable = aTable;
+        }
+
+        @Override
+        public String getHeaderText()
+        {
+            return "[" + aTable.getCurrentUserName() + "] : " + aTable.getTableName();
+        }
+    }
+
+    public interface ATable {
+        String getCurrentUserName();
+        String getTableName();
+    }
+
+    public interface BTable {
+        String getHeaderText();
+    }
+}
+
+-------------------------------------------------------------
+
+/*
+Закрепляем адаптер
+
+Адаптировать Customer и Contact к RowItem.
+Классом-адаптером является DataAdapter.
+
+Инициализируйте countries перед началом выполнения программы. Соответствие кода страны и названия:
+UA Ukraine
+RU Russia
+CA Canada
+*/
+
+public class Solution
+{
+    public static Map<String,String> countries = new HashMap<String,String>();
+
+    static
+    {
+        countries.put("UA", "Ukraine");
+        countries.put("RU", "Russia");
+        countries.put("CA", "Canada");
+    }
+
+    public static void main(String[] args)
+    {
+        //DataAdapter test = new DataAdapter();
+
+        //System.out.println(test.getContactFirstName());
+        //System.out.println(test.getContactLastName());
+        //System.out.println(test.getCountryCode());
+        //System.out.println(test.getDialString());
+    }
+
+    public static class DataAdapter implements RowItem
+    {
+        private Customer customer;
+        private Contact contact;
+
+        public DataAdapter(Customer customer, Contact contact)
+        {
+            this.customer = customer;
+            this.contact = contact;
+        }
+
+        @Override
+        public String getCountryCode()
+        {
+            String countryCode = null;
+
+            String countryName = customer.getCountryName();
+            //String countryName = "Ukraine";       //для теста
+
+            for (Map.Entry<String, String> pair : countries.entrySet())
+                if (pair.getValue().equals(countryName))
+                    countryCode = pair.getKey();
+            return countryCode;
+        }
+
+        @Override
+        public String getCompany() {
+            return customer.getCompanyName();
+        }
+
+        @Override
+        public String getContactFirstName()
+        {
+            String name = contact.getName();
+            //String name = "Ivanov, Ivan";      //для теста
+
+            return name.substring(name.indexOf(",") + 2, name.length());
+        }
+
+        @Override
+        public String getContactLastName()
+        {
+            String name = contact.getName();
+            //String name = "Ivanov, Ivan";      //для теста
+
+            return name.substring(0, name.indexOf(","));
+        }
+
+        @Override
+        public String getDialString() {
+            String num = contact.getPhoneNumber();
+            //String num = "+38(050)123-45-67";         //для теста
+
+                        //так почему-то неподходит
+            //return "callto://" + num.substring(0,3) + num.substring(4,7) + num.substring(8,11) + num.substring(12,14) + num.substring(15,17);
+            return "callto://+" + num.replaceAll("[^0-9]", "");  //а так почему-то подходит
+        }
+    }
+
+    public static interface RowItem {
+        String getCountryCode();        //example UA
+        String getCompany();            //example JavaRush Ltd.
+        String getContactFirstName();   //example Ivan
+        String getContactLastName();    //example Ivanov
+        String getDialString();         //example callto://+380501234567
+    }
+
+    public static interface Customer {
+        String getCompanyName();        //example JavaRush Ltd.
+        String getCountryName();        //example Ukraine
+    }
+
+    public static interface Contact {
+        String getName();               //example Ivanov, Ivan
+        String getPhoneNumber();        //example +38(050)123-45-67
+    }
+}

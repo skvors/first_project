@@ -1,0 +1,170 @@
+
+
+        //уровень 9 лекция 3
+
+ 1 Если внутри блока try возникло исключение, то код перестаёт исполняться, и начинает исполняться блок catch.
+ 2 Если исключение не возникло, то блок try исполняется до конца, а catch никогда так и не начнёт исполняться.
+
+пример программы, которая перехватывает исключение – деление на 0. И продолжает работать.
+
+
+public class ExceptionExample2
+{
+    public static void main(String[] args)
+    {
+        System.out.println("Program starts");
+
+        try
+        {
+            System.out.println("Before method1 calling");
+            method1();
+            System.out.println("After method1 calling. Never will be shown");
+        }
+        catch (Exception e)
+        {
+           System.out.println("Exception has been caught");
+        }
+
+        System.out.println("Program is still running");
+    }
+
+    public static void method1()
+    {
+        int a = 100;
+        int b = 0;
+        System.out.println(a / b);
+    }
+}
+
+		Вот что будет выведено на экран:
+"Program starts"
+"Before method1 calling"
+"Exception has been caught"
+"Program is still running"
+
+-----------------------------------------------------------------------
+
+public class ExceptionExample2
+{
+    public static void main(String[] args)
+    {
+        System.out.println("Program starts");
+
+        try
+        {
+            System.out.println("Before method1 calling");
+            method1();
+            System.out.println("After method1 calling. Never will be shown ");
+        }
+        catch (NullPointerException e)
+        {
+           System.out.println("Reference is null. Exception has been caught");
+        }
+        catch (ArithmeticException e)
+        {
+            System.out.println("Division by zero. Exception has been caught");
+        }
+        catch (Exception e)
+        {
+            System.out.println("Any other errors. Exception has been caught");
+        }
+
+        System.out.println("Program is still running");
+    }
+
+    public static void method1()
+    {
+        int a = 100;
+        int b = 0;
+        System.out.println(a / b);
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Исключение при работе с числами
+Перехватить исключение (и вывести его на экран), указав его тип, возникающее при выполнении кода:
+int a = 42 / 0;
+*/
+
+public class Solution
+{
+    public static void main(String[] args) throws Exception
+    {
+        //напишите тут ваш код
+        try
+        {
+         int a = 42/0;
+
+        //напишите тут ваш код
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+
+    }
+}
+
+-----------------------------------------------------------------------
+при возникновении исключения в блоке try, выполнение программы передаётся на первый catch.
+Если тип, указанный внутри круглых скобок блока catch, совпадает с типом объекта-исключения,
+то начинается выполнение кода внутри блока {}. Иначе переходим к следующему catch. Там проверка повторяется.
+Если блоки catch закончились, а исключение так и не было перехвачено,
+то оно выбрасывается дальше, а текущий метод аварийно завершается.
+
+Во-первых, с помощью команды catch(Exception e) можно перехватить любое исключение вообще.
+Во-вторых - порядок блоков catch имеет значение.
+-----------------------------------------------------------------------
+
+/* Перехват checked исключений
+В методе processExceptions обработайте все checked исключения.
+Нужно вывести на экран каждое возникшее checked исключение.
+Можно использовать только один блок try..
+*/
+
+public class Solution {
+    public static void main(String[] args) {
+        processExceptions(new Solution());
+
+    }
+    public static void processExceptions(Solution obj)
+    {
+     try
+    {
+        obj.method1();
+        obj.method2();
+        obj.method3();
+    }
+    catch (RemoteException e)
+    {
+        System.out.println("RemoteException has been caught");
+    }
+    catch (IOException e)
+    {
+        System.out.println("IOException has been caught");
+    }
+    catch (NoSuchFieldException e)
+    {
+        System.out.println("NoSuchFieldException has been caught");
+    }
+    }
+
+    public void method1() throws IOException {
+        throw new IOException();                  //мы сами генерируем и кидаем исключение
+    }
+
+    public void method2() throws NoSuchFieldException {
+        throw new NoSuchFieldException();
+    }
+
+    public void method3() throws RemoteException {
+        throw new RemoteException();
+    }
+}
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------

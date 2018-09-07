@@ -1,0 +1,174 @@
+
+
+многонитиевость (multithreading).       //16 уровень, 1,2 лекция ... (весь 16 уровень и 17 )
+
+--------------------------------------------------------------
+
+/*
+Часы
+1. Разберись, что делает программа.
+2. Реализуй логику метода printTikTak:
+2.1. Через первые полсекунды должна выводиться в консоль фраза: Tik.
+2.2. Через вторые полсекунды должна выводиться в консоль фраза: Tak.
+*/
+
+public class Solution {
+    public static volatile boolean isStopped = false;
+
+    public static void main(String[] args) throws InterruptedException {
+        Clock clock = new Clock();                             // т. е. здесь происходит запуск другой нити
+        Thread.sleep(2000);
+        isStopped = true;
+        System.out.println("Clock has to be stopped");
+        Thread.sleep(2000);
+        System.out.println("Double-check");
+    }
+
+    public static class Clock extends Thread
+    {
+        public Clock()
+        {
+            setPriority(MAX_PRIORITY);
+            start();                                  //запуск в конструкторе, т. е. при инициализации объекта (интересно)
+        }
+
+        public void run() {
+            try {
+                while (!isStopped) {
+                    printTikTak();
+                }
+            } catch (InterruptedException e) {
+            }
+        }
+
+        private void printTikTak() throws InterruptedException {
+            //add your code here - добавь код тут
+            Thread.sleep(500);
+            System.out.println("Tik");
+            Thread.sleep(500);
+            System.out.println("Tak");
+        }
+    }
+}
+
+--------------------------------------------------------------
+
+/*
+Считаем секунды
+1. Напиши реализацию метода run в нити Stopwatch (секундомер).
+2. Stopwatch должен посчитать количество секунд, которое прошло от создания нити до ввода строки.
+3. Выведи количество секунд в консоль.
+*/
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        InputStreamReader in = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(in);
+        //create and run thread
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.start();
+        //read a string
+        reader.readLine();
+        stopwatch.interrupt();
+        //close streams
+        reader.close();
+        in.close();
+    }
+
+    public static class Stopwatch extends Thread {
+        private int seconds;
+
+        public void run()
+        {
+            try
+            {
+                //add your code here - добавьте код тут
+                seconds = 0;
+                Thread current = Thread.currentThread();
+                while(!current.isInterrupted())
+                {
+                    seconds++;
+                    Thread.sleep(1000);
+                }
+
+            } catch (InterruptedException e) {
+                System.out.println(seconds);
+            }
+        }
+    }
+}
+
+--------------------------------------------------------------
+
+/*
+Вместе быстрее? Ща проверим :)
+
+1. Разберись, что и как работает.
+2. Создай public static нить SortThread, которая в методе run отсортирует статический массив testArray используя метод sort.
+*/
+
+public class Solution {
+    public static int countThreads = 10;
+    public static int[] testArray = new int[1000];
+
+    static {
+        for (int i = 0; i < Solution.testArray.length; i++) {
+            testArray[i] = i;
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException
+    {
+        StringBuffer expectedResult = new StringBuffer();
+        for (int i = 1000 - 1; i >= 0; i--) {
+            expectedResult.append(i).append(" ");
+        }
+
+        initThreads();
+
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < testArray.length; i++) {
+            result.append(testArray[i]).append(" ");
+        }
+        System.out.println(result);
+        System.out.println((result.toString()).equals(expectedResult.toString()));
+    }
+
+    public static class SortThread extends Thread
+    {
+        @Override
+        public void run() {
+            sort(testArray);
+        }
+    }
+
+     public static void initThreads() throws InterruptedException {
+            List<Thread> threads = new ArrayList<Thread>(countThreads);         //создается массив из нитей
+            for (int i = 0; i < countThreads; i++)
+                threads.add(new SortThread());
+
+            for (Thread thread : threads)                                       //каждая нить запускается
+                thread.start();
+
+            for (Thread thread : threads)                                       //ожидаем завершения каждой нити
+                thread.join();
+
+        }
+
+    public static void sort(int[] array) {                                      //интересная сортировка
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[i] < array[j]) {
+                    int k = array[i];
+                    array[i] = array[j];
+                    array[j] = k;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+

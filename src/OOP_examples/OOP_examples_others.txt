@@ -1,0 +1,233 @@
+
+/*
+Класс BigFox
+1. Исправь класс BigFox так, чтобы программа компилировалась.
+*/
+
+public class Solution {
+
+    public static void main(String[] args) throws Exception {
+        Fox bigFox = new BigFox();
+        System.out.println(bigFox.getName());
+        System.out.println(bigFox.getColor());
+
+    }
+
+    public interface Animal {
+        Color getColor();                 //интересный тип Color
+    }
+
+    public static abstract class Fox implements Animal {
+        public String getName() {
+            return "Fox";
+        }
+    }
+
+    public static class BigFox extends Fox
+    {
+        public Color getColor() {
+            return Color.GRAY;
+        }
+    }
+
+}
+
+-------------------------------------------------
+
+Абстрактный класс vs. интерфейс    //13 уровень, 7 лекция
+сходства и различия
+
+-------------------------------------------------
+
+@Override
+На самом деле аннотация @Override указывает, что далее мы собираемся переопределять метод базового класса.
+При этом, если в базовом классе не окажется метода с аналогичной сигнатурой, то мы получим предупреждение
+компилятора о том, что хотя мы и собирались что то переопределить, по факту этого не произошло.
+
+На этом действие аннотации заканчивается.
+
+Таким образом, аннотация никак не влияет на сам факт переопределения метода - при совпадении сигнатур
+с методом базового класса он и так будет переопределен, независимо от наличия, либо отсутствия этой аннотации.
+Аннотация служит лишь для контроля успешности действия при сборке проекта.
+
+В случае отсутствия данной аннотации и не совпадении сигнатур (в результате ошибки) с методом,
+который мы собирались переопределять - случится страшное - очень трудноуловимая ошибка, когда вы думаете,
+что должно бы переопределяться, а по факту имеете отдельный независимый метод, который скорее всего вообще не выполняется.
+При этом компилятор считает, что с его точки зрения все в порядке - хотите собственный метод в классе-наследнике - нет проблем. И молчит.
+
+-------------------------------------------------
+
+/*
+ООП - машинки
+1. Для вывода используй только переменные из класса Constants.
+2. В классе Ferrari реализуйте метод printlnDesire, чтобы он выводил на экран «Я хочу ездить на Феррари«.
+3. В классе Lanos реализуйте метод printlnDesire, чтобы он выводил на экран «Я хочу ездить на Ланосе«.
+4. Создайте public static класс LuxuriousCar(РоскошнаяМашина).
+5. Создайте public static класс CheapCar(ДешеваяМашина).
+6. Унаследуйте Ferrari и Lanos от CheapCar и LuxuriousCar, подумайте, какой класс для кого.
+7. В классе LuxuriousCar реализуйте метод printlnDesire, чтобы он выводил на экран «Я хочу ездить на роскошной машине«.
+8. В классе CheapCar реализуйте метод printlnDesire, чтобы он выводил на экран «Я хочу ездить на дешевой машине«.
+9. В классах LuxuriousCar и CheapCar для метода printlnDesire расставьте различными способами модификаторы доступа так,
+    чтобы в классах Ferrari и Lanos выполнялось расширение видимости.
+*/
+
+public class Solution {
+    public static void main(String[] args) {
+        new Solution.LuxuriousCar().printlnDesire();
+        new Solution.CheapCar().printlnDesire();
+        new Solution.Ferrari().printlnDesire();
+        new Solution.Lanos().printlnDesire();
+    }
+
+    public static class Ferrari extends LuxuriousCar
+    {
+        public void printlnDesire()
+        {
+            //add your code here
+            System.out.println(Constants.WANT_STRING + Constants.FERRARI_NAME);
+        }
+    }
+
+    public static class Lanos  extends CheapCar
+    {
+        public void printlnDesire()
+        {
+            //add your code here
+            System.out.println(Constants.WANT_STRING + Constants.LANOS_NAME);
+        }
+    }
+
+    public static class LuxuriousCar
+    {
+        void printlnDesire()
+        {
+            System.out.println(Constants.WANT_STRING + Constants.LUXURIOUS_CAR);
+        }
+    }
+
+    public static class CheapCar
+    {
+        void printlnDesire()
+        {
+            System.out.println(Constants.WANT_STRING + Constants.CHEAP_CAR);
+        }
+    }
+
+    public static class Constants      //интересно реализованы константы. Они статик поэтому их можно вызывать без создания объекта
+    {
+        public static String WANT_STRING = "Я хочу ездить на ";
+        public static String LUXURIOUS_CAR = "роскошной машине";
+        public static String CHEAP_CAR = "дешевой машине";
+        public static String FERRARI_NAME = "Феррари";
+        public static String LANOS_NAME = "Ланосе";
+    }
+}
+
+-------------------------------------------------
+
+/*
+Коты
+1. Считывать строки(параметры) с консоли, пока пользователь не введет пустую строку(Enter).
+2. Каждый параметр соответствует имени кота.
+
+Для каждого параметра:
+3. Создать объект cat класса Cat, который равен коту из getCatByKey(String параметр).
+4. Вывести на экран cat.toString().
+*/
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Solution {
+    public static void main(String[] args) throws Exception
+    {
+        //напишите тут ваш код
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        String str = null;
+        boolean continue_flag = true;
+        while (continue_flag)
+        {
+            str = reader.readLine();
+            if ("".equals(str))
+                continue_flag = false;
+            else
+            {
+                Cat tempCat = CatFactory.getCatByKey(str);
+                System.out.println(tempCat.toString());
+            }
+        }
+    }
+
+    static class CatFactory                //возможно pattern Factory
+    {
+        static Cat getCatByKey(String key)
+        {
+            Cat cat = null;
+            if ("vaska".equals(key)) {
+                cat = new MaleCat("Василий");
+            } else if ("murka".equals(key)) {
+                cat = new FemaleCat("Мурочка");
+            } else if ("kiska".equals(key)) {
+                cat = new FemaleCat("Кисюлька");
+            } else {
+                cat = new Cat(key);
+            }
+            return cat;
+        }
+    }
+
+    static class Cat {
+        private String name;
+
+        protected Cat(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        @Override
+        public String toString() {
+            return "Я уличный кот " + getName();
+        }
+    }
+
+    static class MaleCat extends Cat {
+        MaleCat(String name)
+        {
+            super(name);                  //здесь тоже переопределение конструктора
+        }
+
+        @Override
+        public String toString() {
+            return "Я - солидный кошак по имени " + getName();
+        }
+    }
+
+    static class FemaleCat extends Cat {
+        FemaleCat(String name) {
+            super(name);
+        }
+
+        @Override
+        public String toString() {
+            return "Я - милая кошечка по имени " + getName();
+        }
+    }
+}
+
+-------------------------------------------------
+
+
+
+
+
+-------------------------------------------------
+
+
+-------------------------------------------------
+
+
+-------------------------------------------------

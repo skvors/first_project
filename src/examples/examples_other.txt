@@ -1,0 +1,1918 @@
+
+System.out.println("Hello World");    //вывод на экран с переносом строки
+System.out.print("Amigo");            //без переноса строки
+
+
+        //пример простой программы
+public class main_4                  //имя класса, дальше тело класса
+{
+	int a;                            //переменная
+    public static void main(String[] args)     //метод main (неизменяемый)
+    {
+        System.out.println("Hello World");     //команда
+	}
+}
+
+
+/* комментарии */
+
+        //меняем местами числа x и y
+int x = 2;
+int y = 12;
+y = x + y;
+x = y - x;
+y = y - x;
+
+
+про совпадение папок, подпапок, имен файлов, классов,
+и т. д. было на первом уровне в одной из первых лекций
+
+про импортирование классов из других файлов сказано в уровень 2 лекция 9
+
+Java Platform, Standard Edition, сокращенно Java SE (ранее Java 2 Standard Edition или J2SE)
+
+IDE: Integrated Development Environment – Интегрированная Среда Разработки.
+
+Конкатенация - Склеивание или объединение строк.
+
+
+System.out.println("Введите два числа");
+a = new Scanner(System.in).nextInt();            //ввод данных
+b = new Scanner(System.in).nextInt();
+c = a + b;
+System.out.println("Сумма ваших чисел равна " + c);
+
+
+         //Функция с типом void
+void doubleWrite(String s)
+{
+   System.out.println(s);
+   System.out.println(s);
+}
+
+
+String name; 	//Переменная с именем name и типом String.
+
+
+String getName() //Функция с именем getName и типом возвращаемого результата String.
+{
+}
+
+public class Person            //Объявили новый сложный тип – Person.
+{                              //Его данные – это
+   String name;                //переменная name типа String(сложный тип)
+   int age;                    //и переменная age типа int(примитивный тип)
+}
+
+
+static - статические переменные и методы
+подробнее про static уровень 4 лекция 1
+так же               уровень 6 лекция 6
+там же дальше про статические классы
+
+
+
+Некоторые функции просто что-то делают, но никаких значений
+не вычисляют и не возвращают, как наш метод main(), например.
+Для них придуман специальный тип результата – void – пустой тип.
+
+//Уровень 3 лекция 5 работа со строками
+
+Принцип склеивания строк простой. Если мы «складываем» строку и ещё что-то, то это что-то преобразовывается в строку посредством неявного вызова метода toString().
+
+int a = 5;
+String text = a + "A is ";
+
+//тоже самое но в расширенном виде
+int a = 5;
+String s = Integer.toString(a);
+String text = s + "A is ";
+
+//исполняемый код
+ int a = 5;
+ String s = Integer.toString(a);
+ String text = "A is " + s;
+ System.out.println(text);
+
+
+    //обертка для примитивного типа int тип Integer
+    Integer i2 = new Integer(10);
+    System.out.print(i2);
+
+
+//ввод с клавиатуры уровень 3 лекция 7
+BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+String name = reader.readLine();        //читаем строку с клавиатуры
+String sAge = reader.readLine();        //читаем строку с клавиатуры
+int nAge = Integer.parseInt(sAge);      //преобразовываем строку в число.
+
+про приложение командной строки было в уровень3 лекция 9 пункт 7
+
+
+«Process finished with exit code 0»  – код завершения программы. 0 – это нормальное завершение.
+
+------------------------------------------------------------
+
+Для переменных ссылочных типов происходит сравнение ссылок. Т.е. если объекты идентичны внутри, но ссылки на них разные, сравнение покажет, что они неравны: результатом сравнения будет false(ложь). Сравнение ссылок будет true(истина), только если обе ссылки указывают на один и тот же объект.
+
+//Происходит сравнение ссылок.На экран будет выведено false.
+Переменные хранят ссылки на два идентичных объекта Cat, но не на один и тот же.
+
+Cat cat1 = new Cat("Vaska");
+Cat cat2 = new Cat("Vaska");
+System.out.println(cat1 == cat2);
+
+-------------------------------------------------------------
+
+//Происходит сравнение объектов.
+На экран будет выведено true.
+Переменные хранят ссылки на два идентичных объекта Cat
+
+Cat cat1 = new Cat("Vaska");
+Cat cat2 = new Cat("Vaska");
+System.out.println(cat1.equals(cat2));
+
+-------------------------------------------------------------
+
+//Происходит сравнение объектов.
+На экран будет выведено true.
+Переменные хранят ссылки на два идентичных объекта String
+
+String s = new String("Mama");
+String s2 = new String("Mama");
+System.out.println(s.equals(s2));
+
+Происходит сравнение объектов.
+На экран будет выведено true.
+Переменные хранят ссылки на два идентичных объекта String
+
+
+Тип boolean и логические операторы      уровень 4 лекции 7
+
+-------------------------------------------------------------
+
+//код цикла
+while(условие типа boolean)
+    команда;
+
+циклы                                  уровень 4 лекции 8
+Команда или блок команд выполняются снова и снова, пока условие цикла истинно – равно true
+
+int i = 0;
+while (i < 3)
+{
+    System.out.println(i);
+    i++;   //увеличение i на 1
+}
+
+вывод на экран
+0
+1
+2
+
+for (int i = 3; i >= 0; i--)
+{
+    System.out.println(i);
+}
+
+-------------------------------------------------------------
+
+
+
+public static boolean cycl_rotation (String s, String t)
+    {
+        char mus_s [] = new char[s.length()];
+        char mus_t [] = new char[t.length()];
+
+        for (int i = 0; i < s.length(); i++)
+            mus_s[i] = s.charAt(i);               //преобразование элемента строки в символ типа char
+
+        for (int i = 0; i < t.length(); i++)
+            mus_t[i] = t.charAt(i);
+
+        boolean pr = true;
+
+        return pr;
+    }
+
+---------------------------------------------
+
+Double.parseDouble(num) //переводит переменную типа String в переменную типа double
+
+деление по модулю доступно как для int так и для double, т. е. 27.5 % 5 даст в ответе 2.5
+
+Thread.sleep(100)     задержка на 100 милисекунд
+
+---------------------------------------------
+
+/* Домашние животные
+Написать три класса: Pet (домашнее животное), Cat(кот) и Dog(собака).
+Унаследовать кота и собаку от животного.
+*/
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+    }
+
+    public class Pet
+    {
+    }
+
+    public class Cat extends Pet
+    {
+    }
+
+    public class Dog extends Pet
+    {
+    }
+}
+
+-----------------------------------------------------------------------
+                 //пример использования метода initialize  уровень 5 лекция 6
+class MyFile
+{
+    private String filename = null;
+    public void initialize(String name)
+    {
+        this.filename = name;
+    }
+
+    public void initialize(String folder, String name)
+    {
+        this.filename = folder + name;
+    }
+
+    // Файл filename будет находиться в той же директории, что и file.
+    public void initialize(MyFile file, String name)
+    {
+        this.filename = file.getFolder() + name;
+    }
+
+…
+}
+
+MyFile file = new MyFile();
+file.initialize("c:\\data\\a.txt");
+
+String text = file.readText();
+MyFile file = new MyFile();
+file.initialize("c:\\data\\", "a.txt");
+
+String text = file.readText();
+MyFile file = new MyFile();
+file.initialize("c:\\data\\a.txt");
+
+MyFile file2 = new MyFile();
+file2.initialize("a.txt");
+
+String text = file2.readText();
+
+-----------------------------------------------------------------------
+
+/* Создать класс Friend
+Создать класс Friend (друг) с тремя инициализаторами (тремя методами initialize):
+- Имя
+- Имя, возраст
+- Имя, возраст, пол
+*/
+
+public class Friend
+{
+    //напишите тут ваш код
+    private String name;
+    private int age;
+    private String gender;
+
+    public void initialize(String yourname)
+    {
+        this.name = yourname;
+    }
+
+    public void initialize(String yourname, int yourage)
+    {
+        this.name = yourname;
+        this.age = yourage;
+    }
+
+    public void initialize(String yourname, int yourage, String yourgender)
+    {
+        this.name = yourname;
+        this.age = yourage;
+        this.gender = yourgender;
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Создать класс прямоугольник (Rectangle)
+Создать класс прямоугольник (Rectangle). Его данными будут top, left, width, height (левая координата, верхняя, ширина и высота). Создать для него как можно больше методов initialize(…)
+Примеры:
+-	заданы 4 параметра: left, top, width, height
+-	ширина/высота не задана (оба равны 0)
+-	высота не задана (равно ширине) создаём квадрат
+-	создаём копию другого прямоугольника (он и передаётся в параметрах)
+*/
+
+public class Rectangle
+{
+    //напишите тут ваш код
+    int left;
+    int top;
+    int width;
+    int heidth;
+
+
+    public void initialize(int left, int top, int width, int heidth)
+    {
+        this.left = left;
+        this.top = top;
+        this.width = width;
+        this.heidth = heidth;
+    }
+
+    public void initialize(int left, int top)
+    {
+        this.left = left;
+        this.top = top;
+        this.width = 0;
+        this.heidth = 0;
+    }
+
+    public void initialize(int left, int top, int width)
+    {
+        this.left = left;
+        this.top = top;
+        this.width = width;
+        this.heidth = width;
+    }
+
+    public void initialize(Rectangle rectangle)
+    {
+        this.left = rectangle.left;
+        this.top = rectangle.top;
+        this.width = rectangle.width;
+        this.heidth = rectangle.heidth;
+    }
+
+}
+
+-----------------------------------------------------------------------
+
+/* 4 скобки
+Расставить правильно (по другому) скобки, чтобы на экран вывелось число 850
+*/
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+        System.out.println( 1 + 2 * (3 + 4 * 5 + 6 * 7 + 8 * 9 + 10 * 11 + 12 * 13 + 14) + 15);
+    }
+}
+
+-----------------------------------------------------------------------
+
+class MyFile                        //использование конструктора
+{
+  private String filename = null;
+
+  public MyFile(String name)            //собственно сам конструктор
+  {
+    this.filename = name;
+  }
+}
+
+MyFile file = new MyFile("c:\\data\\a.txt");
+String text = file.readText();
+
+Конструктор - это тот же метод initialize, но с двумя отличиями:
+а) Имя метода-конструктора совпадает с именем класса (вместо initialize).
+б) У метода-конструктора нет типа (никакой тип не указывается вообще).
+
+-----------------------------------------------------------------------
+
+//finalize(). Этот метод вызывается Java-машиной у объекта перед тем, как объект будет уничтожен.
+Фактически этот метод – противоположность конструктору.
+В нем можно освобождать ресурсы, используемые объектом.  уровень 6 лекция 3
+/* Метод finalize класса Cat
+В классе Cat создать метод protected void finalize() throws Throwable
+*/
+
+public class Cat
+{
+    //напишите тут ваш код
+    protected void finalize() throws Throwable
+    {}
+}
+
+-----------------------------------------------------------------------
+
+/* Классы Cat и Dog и метод finalize для каждого
+В каждом классе Cat и Dog написать метод finalize, который выводит на экран текст о том, что такой-то объект уничтожен.
+*/
+
+public class Cat
+{
+    //напишите тут ваш код
+    protected void finalize() throws Throwable
+    {
+        System.out.println("объект типа Cat уничтожен");
+    }
+}
+
+class Dog
+{
+    //напишите тут ваш код
+    protected void finalize() throws Throwable
+    {
+        System.out.println("объект типа Dog уничтожен");
+    }
+}
+
+-----------------------------------------------------------------------
+
+//массивы
+String[] catNames = new String[10];        //или  String catNames[]= new String[10];
+for (int i = 0; i < 10; i++)
+        catNames[i] = "";
+-----------------------------------------------------------------------
+
+/* По 50 000 объектов Cat и Dog
+Создать в цикле по 50 000 объектов Cat и Dog. (Java-машина должна начать уничтожать неиспользуемые, и метод finalize хоть раз да вызовется).
+*/
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+        //напишите тут ваш код
+        Cat cat[] = new Cat[50000];
+        Dog dog[] = new Dog[50000];
+
+        for (int i = 0; i<50000; i++)
+        {
+            cat[i] = new Cat();
+            dog[i] = new Dog();
+        }
+    }
+}
+class Cat
+{
+    @Override
+    protected void finalize() throws Throwable
+    {
+        super.finalize();
+        System.out.println("Cat destroyed");
+    }
+}
+
+class Dog
+{
+    @Override
+    protected void finalize() throws Throwable
+    {
+        super.finalize();
+        System.out.println("Dog destroyed");
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Cчётчик котов
+В конструкторе класса Cat [public Cat()] увеличивать счётчик котов (статическую переменную этого же класса catCount) на 1. В методе finalize уменьшать на 1.
+*/
+
+public class Cat
+{
+    public static int catCount = 0;
+
+    //напишите тут ваш код
+    public Cat()
+    {
+        Cat.catCount++;
+    }
+
+    protected void finalize() throws Throwable
+    {
+        Cat.catCount--;
+    }
+
+
+    public static void main(String[] args) {
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Класс Cat и статическая переменная catCount
+Создать статическую переменную int catCount в классе Cat. Создай конструктор [public Cat()], в котором увеличивай данную переменную на 1.
+*/
+
+public class Cat
+{
+    //напишите тут ваш код
+    static int catCount = 0;
+    public Cat()
+    {
+        Cat.catCount++;
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Класс Util
+Реализовать статический метод double getDistance(x1, y1, x2, y2). Он должен вычислять расстояние между точками.
+Используй метод double Math.sqrt(double a), который вычисляет квадратный корень переданного параметра
+*/
+
+public class Util
+{
+    public static double getDistance(int x1, int y1, int x2, int y2)
+    {
+        //напишите тут ваш код
+        return Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+/* Класс ConsoleReader
+Сделать класс ConsoleReader, у которого будут 4 статических метода:
+String readString() – читает с клавиатуры строку
+int readInt() – читает с клавиатуры число
+double readDouble() – читает с клавиатуры дробное число
+boolean readBoolean() – читает с клавиатуры строку "true" или "false" и возвращает соответствующую логическую переменную true или false
+Внимание: создавайте переменную для чтения данных с консоли (BufferedReader или Scanner) внутри каждого метода
+*/
+
+public class ConsoleReader
+{
+    public static String readString() throws Exception
+    {
+        //напишите тут ваш код
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String s = reader.readLine();
+        return s;
+    }
+
+    public static int readInt() throws Exception
+    {
+        //напишите тут ваш код
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String sNum1 = reader.readLine();
+        int num1 = Integer.parseInt(sNum1);
+        return num1;
+    }
+
+    public static double readDouble() throws Exception
+    {
+        //напишите тут ваш код
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String sNum1 = reader.readLine();
+        double num1 = Double.parseDouble(sNum1);
+        return num1;
+    }
+
+    public static boolean readBoolean() throws Exception
+    {
+        //напишите тут ваш код
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String sNum1 = reader.readLine();
+        boolean num1 = Boolean.parseBoolean(sNum1);
+        return num1;
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+/* Самая короткая строка
+1. Создай список строк.
+2. Считай с клавиатуры 5 строк и добавь в список.
+3. Используя цикл, найди самую короткую строку в списке.
+4. Выведи найденную строку на экран.
+5. Если таких строк несколько, выведи каждую с новой строки.
+*/
+public class Solution
+{
+    public static void main(String[] args) throws Exception
+    {
+        //напишите тут ваш код
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        ArrayList<String> list = new ArrayList<String>();
+
+        for (int i = 0; i < 5; i++)
+            list.add(reader.readLine());
+
+        int min = list.get(0).length();
+        for (int i = 1; i < list.size(); i++)
+            if (list.get(i).length() < min)
+                min = list.get(i).length();
+
+        for (int i = 0; i < list.size(); i++)
+            if (list.get(i).length() == min)
+                System.out.println(list.get(i));
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Провести три боя  попарно между котами
+Создать три кота используя класс Cat.
+Провести три боя попарно между котами.
+Класс Cat создавать не надо. Для боя использовать метод boolean fight(Cat anotherCat).
+Результат каждого боя вывести на экран.
+*/
+
+public class Solution {
+    public static void main(String[] args) {
+        //напишите тут ваш код
+
+        Cat cat1 = new Cat("barsic", 3, 8, 9);
+        Cat cat2 = new Cat("vaska", 4, 6, 8);
+        Cat cat3 = new Cat("petka", 3, 8, 12);
+
+        System.out.println(cat1.fight(cat2));
+        System.out.println(cat1.fight(cat3));
+        System.out.println(cat2.fight(cat3));
+    }
+
+    public static class Cat {
+
+        public static int count = 0;
+        public static int fightCount = 0;
+
+        protected String name;
+        protected int age;
+        protected int weight;
+        protected int strength;
+
+        public Cat(String name, int age, int weight, int strength)
+        {
+            count++;
+
+            this.name = name;
+            this.age = age;
+            this.weight = weight;
+            this.strength = strength;
+        }
+
+        public boolean fight(Cat anotherCat) {
+            fightCount++;
+
+            int agePlus = this.age > anotherCat.age ? 1 : 0;
+            int weightPlus = this.weight > anotherCat.weight ? 1 : 0;
+            int strengthPlus = this.strength > anotherCat.strength ? 1 : 0;
+
+            int score = agePlus + weightPlus + strengthPlus;
+            return score > 2; // return score > 2 ? true : false;
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.util.HashMap;
+import java.util.Map;
+
+/* Коллекция HashMap из Object
+Есть коллекция HashMap<String, Object>, туда занесли 10 различных пар объектов.
+Вывести содержимое коллекции на экран, каждый элемент с новой строки.
+Пример вывода (тут показана только одна строка):
+Sim - 5
+*/
+
+public class Solution
+{
+    public static void main(String[] args) throws Exception
+    {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("Sim", 5);
+        map.put("Tom", 5.5);
+        map.put("Arbus", false);
+        map.put("Baby", null);
+        map.put("Cat", "Cat");
+        map.put("Eat", new Long(56));
+        map.put("Food", new Character('3'));
+        map.put("Gevey", '6');
+        map.put("Hugs", 111111111111L);
+        map.put("Comp", (double)123);
+
+        //напишите тут ваш код
+        for (Map.Entry<String, Object> pair : map.entrySet())
+        {
+            String key = pair.getKey();                      //ключ
+            Object value = pair.getValue();                  //значение
+            System.out.println(key + " - " + value);
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.util.*;
+
+/* Создать два списка LinkedList и ArrayList
+Нужно создать два списка – LinkedList и ArrayList.
+*/
+
+public class Solution
+{
+    public static Object createArrayList()
+    {
+        //напишите тут ваш код
+        ArrayList<String> a_list = new ArrayList<String>();
+        return a_list;
+    }
+
+    public static Object createLinkedList()
+    {
+        //напишите тут ваш код
+        LinkedList<String> l_list = new LinkedList<String>();
+        return l_list;
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+/* Провести 10 тысяч вставок, удалений
+Для arrayList и linkedList провести 10 тысяч вставок, удалений, а также вызовов get и set.
+*/
+
+public class Solution
+{
+    public static void main(String[] args) throws Exception
+    {
+        // ArrayList
+        ArrayList arrayList = new ArrayList();
+        insert10000(arrayList);
+        get10000(arrayList);
+        set10000(arrayList);
+        remove10000(arrayList);
+
+        // LinkedList
+        LinkedList linkedList = new LinkedList();
+        insert10000(linkedList);
+        get10000(linkedList);
+        set10000(linkedList);
+        remove10000(linkedList);
+    }
+
+    public static void insert10000(List list)
+    {
+        //напишите тут ваш код
+        for (int i = 0; i < 10000; i++)
+            list.add(i);
+    }
+
+    public static void get10000(List list)
+    {
+        //напишите тут ваш код
+        Object temp;
+        for (int i = 0; i < 10000; i++)
+            temp = list.get(i);
+    }
+
+    public static void set10000(List list)
+    {
+        //напишите тут ваш код
+        for (int i = 0; i < 10000; i++)
+            list.set(i, 30303);
+    }
+
+    public static void remove10000(List list)
+    {
+        //напишите тут ваш код
+        for (int i = 0; i < 10000; i++)
+            list.remove(0);
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
+/* Измерить сколько времени занимает 10 тысяч вставок для каждого списка
+Измерить, сколько времени занимает 10 тысяч вставок для каждого списка.
+Метод getTimeMsOfInsert  должен вернуть время его исполнения в миллисекундах.
+*/
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+        System.out.println(getTimeMsOfInsert(new ArrayList()));
+        System.out.println(getTimeMsOfInsert(new LinkedList()));
+    }
+
+    public static long  getTimeMsOfInsert(List list)
+    {
+        //напишите тут ваш код
+        Date old_time = new Date();
+
+        insert10000(list);
+
+        //напишите тут ваш код
+        Date now_time = new Date();
+
+        return now_time.getTime() - old_time.getTime();
+    }
+
+    public static void insert10000(List list)
+    {
+        for (int i=0;i<10000;i++)
+        {
+            list.add(0, new Object());
+        }
+    }
+}
+-----------------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+/* Четыре метода
+Реализовать 4 метода. Они должны возвращать список, который лучше всего подходит для выполнения данных операций (быстрее всего справится с большим количеством операций). Ничего измерять не нужно.
+*/
+
+public class Solution
+{
+    public static List  getListForGet()
+    {
+        //напишите тут ваш код
+        return new ArrayList();
+    }
+
+    public static List  getListForSet()
+    {
+        //напишите тут ваш код
+        return new ArrayList();
+    }
+
+    public static List  getListForAddOrInsert()
+    {
+        //напишите тут ваш код
+        return new LinkedList();
+    }
+
+    public static List  getListForRemove()
+    {
+        //напишите тут ваш код
+        return new LinkedList();
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.*;
+
+/* Удалить все числа больше 10
+Создать множество чисел(Set<Integer>), занести туда 20 различных чисел.
+Удалить из множества все числа больше 10.
+*/
+
+public class Solution
+{
+    public static HashSet<Integer> createSet()
+    {
+        //напишите тут ваш код
+        HashSet<Integer> set = new HashSet<Integer>();
+        for (int i = 1; i < 21; i++)
+            set.add(i);
+        return set;
+    }
+
+    public static HashSet<Integer> removeAllNumbersMoreThan10(HashSet<Integer> set)
+    {
+        //напишите тут ваш код
+        Iterator<Integer> iterator = set.iterator();
+
+        while (iterator.hasNext())
+        {
+            Integer i = iterator.next();
+            if (i > 10)
+                iterator.remove();
+        }
+        return set;
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.*;
+
+/* Одинаковые имя и фамилия
+Создать словарь (Map<String, String>) занести в него десять записей по принципу «Фамилия» - «Имя».
+Проверить сколько людей имеют совпадающие с заданным имя или фамилию.
+*/
+
+public class Solution
+{
+    public static HashMap<String, String> createMap()
+    {
+        //напишите тут ваш код
+        HashMap<String, String> map = new HashMap<String, String>();
+        for (int i = 0; i < 10; i++)
+            map.put(Integer.toString(i), "serg");
+        return map;
+    }
+
+    public static int getCountTheSameFirstName(HashMap<String, String> map, String name)
+    {
+        //напишите тут ваш код
+        int count = 0;
+        for (Map.Entry<String, String> pair : map.entrySet())
+        {
+            String value = pair.getValue();                      //ключ
+            if (value.equals(name))
+                count++;
+        }
+        return count;
+    }
+
+    public static int getCountTheSameLastName(HashMap<String, String> map, String lastName)
+    {
+        //напишите тут ваш код
+        int count = 0;
+        for (Map.Entry<String, String> pair : map.entrySet())
+        {
+            String key = pair.getKey();                      //ключ
+            if (key.equals(lastName))
+                count++;
+        }
+        return count;
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.*;
+
+/* Удалить всех людей, родившихся летом
+Создать словарь (Map<String, Date>) и занести в него десять записей по принципу: «фамилия» - «дата рождения».
+Удалить из словаря всех людей, родившихся летом.
+*/
+
+public class Solution
+{
+    public static HashMap<String, Date> createMap()
+    {
+        HashMap<String, Date> map = new HashMap<String, Date>();
+        map.put("Stallone", new Date("JUNE 1 1980"));
+
+        //напишите тут ваш код
+        map.put("Stallone2", new Date("JULY 1 1980"));
+        map.put("Stallone3", new Date("DECEMBER 1 1980"));
+        map.put("Stallone4", new Date("JUNE 1 1981"));
+        map.put("Stallone5", new Date("NOVEMBER 1 1980"));
+        map.put("Stallone6", new Date("January 1 1980"));
+        map.put("Stallone7", new Date("JUNE 1 1980"));
+        map.put("Stallone8", new Date("JUNE 1 1980"));
+        map.put("Stallone9", new Date("JUNE 1 1980"));
+        map.put("Stallone12", new Date("JUNE 1 1980"));
+
+        return map;
+    }
+
+    public static void removeAllSummerPeople(HashMap<String, Date> map)
+    {
+        //напишите тут ваш код
+        Iterator<Map.Entry<String, Date>> iterator = map.entrySet().iterator();
+
+        while (iterator.hasNext())
+        {
+        //получение «пары» элементов
+            Map.Entry<String, Date> pair = iterator.next();
+
+            Date date = pair.getValue();        //значение
+            int mont = date.getMonth();
+
+            if ((mont == 5) || (mont == 6) || (mont == 7))
+                iterator.remove();
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.*;
+
+/* Удалить людей, имеющих одинаковые имена
+Создать словарь (Map<String, String>) занести в него десять записей по принципу «фамилия» - «имя».
+Удалить людей, имеющих одинаковые имена.
+*/
+
+public class Solution
+{
+    public static HashMap<String, String> createMap()
+    {
+        //напишите тут ваш код
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        map.put("A", "Oleg");
+        map.put("B", "Sasha");
+        map.put("C", "Andrey");
+        map.put("D", "Kolya");
+        map.put("E", "Vasya");
+        map.put("F", "Petya");
+        map.put("G", "Andrey");
+        map.put("H", "Oleg");
+        map.put("I", "Sasha");
+        map.put("J", "Andrey");
+
+        return map;
+    }
+
+    public static void removeTheFirstNameDuplicates(HashMap<String, String> map)
+    {
+        //напишите тут ваш код
+
+        HashMap<String, String> copy = new HashMap<String, String>(map);
+        for (Map.Entry<String,String> element :copy.entrySet())
+        {
+            int count = 0;
+            for (Map.Entry<String, String> copyElement : copy.entrySet())
+            {
+                if (element.getValue().equals(copyElement.getValue()))
+                {
+                    count++;
+                }
+            }
+            if (count > 1)
+            {
+                removeItemFromMapByValue(map, element.getValue());
+            }
+        }
+    }
+
+    public static void removeItemFromMapByValue(HashMap<String, String> map, String value)
+    {
+        HashMap<String, String> copy = new HashMap<String, String>(map);
+        for (Map.Entry<String, String> pair: copy.entrySet())
+        {
+            if (pair.getValue().equals(value))
+                map.remove(pair.getKey());
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Три класса
+По аналогии с классом Duck(утка) создай классы Cat(кошка) и Dog(собака).
+Подумай, что должен возвращать метод toString в классах Cat и Dog?
+В методе main создай по два объекта каждого класса и выведи их на экран.
+Объекты класса Duck уже созданы и выводятся на экран.
+*/
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+        Duck duck1 = new Duck();
+        Duck duck2 = new Duck();
+        System.out.println(duck1);
+        System.out.println(duck2);
+
+        //напишите тут ваш код
+        Cat cat1 = new Cat();
+        Cat cat2 = new Cat();
+        System.out.println(cat1);
+        System.out.println(cat2);
+
+        Dog dog1 = new Dog();
+        Dog dog2 = new Dog();
+        System.out.println(dog1);    //без проблем выводит на экран, т. е. он неявно вызвает метод toString() описанный в классе
+        System.out.println(dog2);
+    }
+
+    public static class Duck
+    {
+        public String toString() {
+            return "Duck";
+        }
+    }
+
+    //напишите тут ваш код
+    public static class Cat
+    {
+        public String toString() {
+            return "Cat";
+        }
+    }
+    public static class Dog
+    {
+        public String toString() {
+            return "Dog";
+        }
+    }
+
+}
+
+-----------------------------------------------------------------------
+
+/* Вводить с клавиатуры числа и считать их сумму
+Вводить с клавиатуры числа и считать их сумму, пока пользователь не введёт слово «сумма». Вывести на экран полученную сумму.
+*/
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Solution
+{
+    public static void main(String[] args) throws Exception
+    {
+        //напишите тут ваш код
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        boolean cond = true;
+        int i;
+        int sum = 0;
+        String str;
+
+        while (cond)
+        {
+            str = reader.readLine();
+
+            if (str.equals("сумма"))
+            {
+                cond = false;
+                System.out.println(sum);
+            }
+            else
+            {
+                i = Integer.parseInt(str);
+                sum = sum + i;
+            }
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+/* Номер месяца
+Программа вводит с клавиатуры имя месяца и выводит его номер на экран в виде: «May is 5 month».
+Используйте коллекции.
+*/
+
+public class Solution
+{
+    public static void main(String[] args) throws IOException
+    {
+        //напишите тут ваш код
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Map<String, Integer> map = new HashMap<String, Integer>();
+
+        map.put("January", 1);
+        map.put("February", 2);
+        map.put("March", 3);
+        map.put("April", 4);
+        map.put("May", 5);
+        map.put("June", 6);
+        map.put("July", 7);
+        map.put("August", 8);
+        map.put("September", 9);
+        map.put("October", 10);
+        map.put("November", 11);
+        map.put("December", 12);
+
+        String month = reader.readLine();
+        String up_month = month.toUpperCase();               //превращение символов в заглавные
+        String up_key;
+
+        for (Map.Entry<String, Integer> pair : map.entrySet())
+        {
+            String key = pair.getKey();                      //ключ
+            Integer value = pair.getValue();                  //значение
+
+            up_key = key.toUpperCase();
+
+            if (up_key.equals(up_month))
+                System.out.println(key + " is " + value + " month");
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+/* Нужно исправить программу, чтобы компилировалась и работала
+Задача:  Программа вводит с клавиатуры данные про котов и выводит их на экран. Пример:
+Cat name is Barsik, age is 6, weight is 5, tail = 22
+Cat name is Murka, age is 8, weight is 7, tail = 20
+*/
+
+public class Solution
+{
+    public final static ArrayList<Cat> CATS = new ArrayList<Cat>();
+
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true)
+        {
+            String name = reader.readLine();
+            if (name.isEmpty()) break;
+
+            int age = Integer.parseInt(reader.readLine());
+            int weight = Integer.parseInt(reader.readLine());
+            int tailLength = Integer.parseInt(reader.readLine());
+
+            Cat cat = new Cat(name, age, weight, tailLength);
+            CATS.add(cat);
+        }
+        printList();
+    }
+
+    public static void printList() {
+        for (int i = 0; i < CATS.size(); i++)
+        {
+            System.out.println(CATS.get(i).toString());
+        }
+    }
+
+    public static class Cat
+    {
+        private String name;
+        private int age;
+        private int weight;
+        private int tailLength;
+
+        Cat(String name, int age, int weight, int tailLength)
+        {
+            this.name = name;
+            this.age = age;
+            this.weight = weight;
+            this.tailLength = tailLength;
+        }
+
+        @Override
+        public String toString()
+        {
+            return "Cat name is " + name + ", age is " + age + ", weight is " + weight + ", tail = " + tailLength;
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Задача №4 на преобразование целых типов
+Добавить одну операцию по преобразованию типа, чтобы получался ответ: nine=9
+short number = 9;
+char zero = '0';
+int nine = (zero + number);
+*/
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+        short number = 9;
+        char zero = '0';
+        int nine = (Character.getNumericValue(zero) + number);
+        System.out.println(nine);
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Статические коты
+1. В классе Cat добавь public статическую переменную cats (ArrayList<Cat>).
+2. Пусть при каждом создании кота (нового объекта Cat) в переменную cats добавляется этот новый кот. Создать 10 объектов Cat.
+3. Метод printCats должен выводить всех котов на экран. Нужно использовать переменную cats.
+*/
+
+public class Cat
+{
+    public Cat()
+    {
+        cats.add(this);
+    }
+    //напишите тут ваш код
+    public static ArrayList<Cat> cats = new ArrayList<Cat>();
+
+    public static void main(String[] args) {
+        //Создай тут 10 котов
+        for(int i=0; i<10; i++)
+            new Cat();
+
+        printCats();
+    }
+
+    public static void printCats()
+    {
+        //Добавь свой код для пункта 3 тут
+        for(Cat catField : cats)
+            System.out.println(catField);
+    }
+}
+
+-----------------------------------------------------------------------
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/* Нужно добавить в программу новую функциональность
+Задача: У каждой кошки есть имя и кошка-мама. Создать класс, который бы описывал данную ситуацию. Создать два объекта: кошку-дочь и кошку-маму. Вывести их на экран.
+Новая задача: У каждой кошки есть имя, кошка-папа и кошка-мама. Изменить класс Cat так, чтобы он мог описать данную ситуацию.
+Создать 6 объектов: дедушку(папин папа), бабушку(мамина мама), папу, маму, сына, дочь.
+Вывести их всех на экран в порядке: дедушка, бабушка, папа, мама, сын, дочь.
+
+Пример ввода:
+дедушка Вася
+бабушка Мурка
+папа Котофей
+мама Василиса
+сын Мурчик
+дочь Пушинка
+
+Пример вывода:
+Cat name is дедушка Вася, no mother, no father
+Cat name is бабушка Мурка, no mother, no father
+Cat name is папа Котофей, no mother, father is дедушка Вася
+Cat name is мама Василиса, mother is бабушка Мурка, no father
+Cat name is сын Мурчик, mother is мама Василиса, father is папа Котофей
+Cat name is дочь Пушинка, mother is мама Василиса, father is папа Котофей
+*/
+
+public class Solution
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        String grandpaName = reader.readLine();
+        Cat catGrandpa = new Cat(grandpaName);
+
+        String grandmaName = reader.readLine();
+        Cat catGrandma = new Cat(grandmaName);
+
+        String fatherName = reader.readLine();
+        Cat catFather = new Cat(fatherName, catGrandpa, null);
+
+        String motherName = reader.readLine();
+        Cat catMother = new Cat(motherName, null, catGrandma);
+
+        String sonName = reader.readLine();
+        Cat catSon = new Cat(sonName, catFather, catMother);
+
+        String daughterName = reader.readLine();
+        Cat catDaughter = new Cat(daughterName, catFather, catMother);
+
+
+        System.out.println(catGrandpa);
+        System.out.println(catGrandma);
+        System.out.println(catFather);
+        System.out.println(catMother);
+        System.out.println(catSon);
+        System.out.println(catDaughter);
+    }
+
+    public static class Cat
+    {
+        private String name;
+        private Cat parent_father;
+        private Cat parent_mother;
+
+        Cat(String name)
+        {
+            this.name = name;
+        }
+
+        Cat(String name, Cat parent_father, Cat parent_mother)
+        {
+            this.name = name;
+            this.parent_mother = parent_mother;
+            this.parent_father = parent_father;
+        }
+
+        @Override
+        public String toString()
+        {
+            if ((parent_mother == null)&&(parent_father == null))
+                return "Cat name is " + name + ", no mother, no father";
+            else if ((parent_mother == null)&&(parent_father != null))
+                return "Cat name is " + name + ", no mother" + ", father is " + parent_father.name;
+            else if ((parent_mother != null)&&(parent_father == null))
+                return "Cat name is " + name + ", mother is " + parent_mother.name + ", no father";
+            else
+                return "Cat name is " + name + ", mother is " + parent_mother.name + ", father is " + parent_father.name;
+        }
+    }
+}
+//Необходимо создание объекта делать (name, father, mother), а вывод на печать как проситься в задании(name, mother, father)
+
+-----------------------------------------------------------------------
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+        KissMyShinyMetalAss silver_ass = new KissMyShinyMetalAss();
+        System.out.println(silver_ass);
+    }
+}
+
+class KissMyShinyMetalAss
+{
+}
+//То есть если я создаю класс внутри класса Solution то он обязательно должен быть static? Почему не статичный класс может быть только снаружи(от Solution)?
+
+-----------------------------------------------------------------------
+
+/* Set из котов
+1. Внутри класса Solution создать public static класс кот – Cat.
+2. Реализовать метод createCats, он должен создавать множество (Set) котов и добавлять в него 3 кота.
+3. В методе main удалите одного кота из Set cats.
+4. Реализовать метод printCats, он должен вывести на экран всех котов, которые остались во множестве. Каждый кот с новой строки.
+*/
+
+public class Solution
+{
+    public static void main(String[] args)
+    {
+        Set<Cat> cats = createCats();
+
+        //напишите тут ваш код. пункт 3
+        Iterator<Cat> i = cats.iterator();
+        Cat cat = i.next();
+        i.remove();
+
+        printCats(cats);
+    }
+
+    public static Set<Cat> createCats()
+    {
+        //напишите тут ваш код. пункт 2
+        Set<Cat> cats = new HashSet<Cat>();
+        cats.add(new Cat());
+        cats.add(new Cat());
+        cats.add(new Cat());
+        return cats;
+    }
+
+    public static void printCats(Set<Cat> cats)
+    {
+        // пункт 4
+        for (Cat cat:cats)
+            System.out.println(cat);
+    }
+
+    // пункт 1
+    public  static class Cat
+    {
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Вызов методов
+Подумайте, что делает программа.
+По аналогии с методом printName(Student student), в метод main добавьте вызовы методов printAge(Student student) и printMoney(Student student)
+*/
+public class Solution1
+{
+    public static void main(String[] args) {
+        Student student1 = new Student();
+        printName(student1);
+        //напишите тут ваш код
+        printAge(student1);
+        printMoney(student1);
+    }
+
+    public static void printName(Student student){
+        System.out.println(student.name);
+    }
+
+    public static void printAge(Student student){
+        System.out.println("Age: " + student.age);
+    }
+
+    public static void printMoney(Student student){
+        System.out.println("Money: " + student.money);
+    }
+
+    public static class Student {
+        String name = "Amigo";
+        int age = 2;
+        int money = 0;
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* У каждого животного должна быть хозяйка.
+Создайте объект типа Cat(кот), объект типа Dog (собака), объект типа Fish (рыбка) и объект типа Woman.
+Присвойте каждому животному владельца (owner).
+*/
+public class Solution2
+{
+    public static void main(String[] args)
+    {
+        //напишите тут ваш код
+        Woman carry = new Woman();
+        Woman kitty = new Woman();
+
+        Cat cat1 = new Cat();
+        cat1.owner = carry;
+
+        Dog dog1 = new Dog();
+        dog1.owner = kitty;
+
+        Fish fish1 = new Fish();
+        fish1.owner = carry;
+    }
+
+    public static class Cat
+    {
+        public Woman owner;
+    }
+
+    public static class Dog
+    {
+        public Woman owner;
+    }
+
+    public static class Fish
+    {
+        public Woman owner;
+    }
+
+    public static class Woman
+    {
+    }
+}
+
+-----------------------------------------------------------------------
+
+public class Solution3              //меняет местами возраст студентов
+{
+    public static void main(String[] args)
+    {
+        Student olga = new Student();
+        olga.name = "Olga";
+        olga.age = 21;
+
+        Student vera = new Student();
+        vera.name = "Veronika";
+        vera.age = 15;
+
+        System.out.println("Olga is " + olga.age);
+        System.out.println("Vera is " + vera.age);
+
+        ageSwap(olga, vera);
+
+        System.out.println("Olga is " + olga.age);
+        System.out.println("Vera is " + vera.age);
+    }
+
+    private static void ageSwap(Student a, Student b)
+    {
+        int c = a.age;
+        a.age = b.age;
+        b.age = c;
+    }
+
+    static class Student
+    {
+        String name;
+        int age;
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Измените программу
+Метод public static void printFullName(Student student). Метод выводит полное ФИО студента на экран.
+Пример вывода:
+Mark Elliot Zuckerberg
+*/
+
+public class Solution4
+{
+    public static void main(String[] args)
+    {
+        Student student = new Student();
+        student.firstName = "Mark";
+        student.middleName = "Elliot";
+        student.lastName = "Zuckerberg";
+        printFullName(student);
+    }
+
+    public static void printFullName(Student student)
+    {
+        System.out.print(student.firstName +" ");
+        System.out.print(student.middleName +" ");
+        System.out.print(student.lastName);
+    }
+
+    public static class Student
+    {
+        public String firstName;
+        public String middleName;
+        public String lastName;
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Семь цветов радуги
+Создать 7 объектов, чтобы на экран вывелись 7 цветов радуги (ROYGBIV).
+Каждый объект при создании выводит на экран определенный цвет.
+*/
+
+public class Solution5
+{
+    public static void main(String[] args)
+    {
+        Red col_red = new Red();
+        Orange col_oran = new Orange();
+        Yellow col_yel = new Yellow();
+        Green col_green = new Green();
+        Blue col_blue = new Blue();
+        Indigo col_indi = new Indigo();
+        Violet col_viol = new Violet();
+    }
+
+    public static class Red
+    {
+        public Red() {
+            System.out.println("Red");
+        }
+    }
+
+    public static class Orange
+    {
+        public Orange() {
+            System.out.println("Orange");
+        }
+    }
+
+    public static class Yellow
+    {
+        public Yellow() {
+            System.out.println("Yellow");
+        }
+    }
+
+    public static class Green
+    {
+        public Green() {
+            System.out.println("Green");
+        }
+    }
+
+    public static class Blue
+    {
+        public Blue() {
+            System.out.println("Blue");
+        }
+    }
+
+    public static class Indigo
+    {
+        public Indigo() {
+            System.out.println("Indigo");
+        }
+    }
+
+    public static class Violet
+    {
+        public Violet() {
+            System.out.println("Violet");
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Shadowing variables
+Подумайте, что делает программа.
+Исправьте ошибку в программе чтобы переменная age объекта person изменила свое значение.
+Подсказка: тщательно просмотрите метод adjustAge
+*/
+
+/*Если нужно уточнить не статическую переменную уровня класса,
+достаточно использовать ключевое слово this.
+Допустим в классе объявлена переменная name и в методе объявляется локальная переменная с тем же именем.
+Тогда их и различаем указанием "хозяина": "this.name =name;*/
+
+
+public class Solution7
+{
+    public static void main(String[] args) {
+
+        Person person = new Person();
+        System.out.println("Age is: " + person.age);
+        person.adjustAge(person.age);
+        System.out.println("Adjusted Age is: " + person.age);
+    }
+
+    public static class Person
+    {
+        public int age = 20;            //здесь не static
+
+        public void adjustAge(int age)
+        {
+            this.age = age + 20;         // для уточнения используется this так как не static , подробнее выше
+            System.out.println("The Age in adjustAge() is " + age);
+
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+/* Реализовать метод addPrice
+Реализовать метод addPrice(int applesPrice), чтобы при его вызове суммарная стоимость яблок увеличивалось на переданное значение.
+За суммарную стоимость яблок отвечает переменная public static int applesPrice.
+*/
+public class Solution8
+{
+    public static void main(String[] args) {
+        Apple apple = new Apple();
+        Apple.addPrice(50);
+        Apple apple2 = new Apple();
+        Apple.addPrice(100);
+        System.out.println("Apples price is " + Apple.applesPrice);
+    }
+
+    public static class Apple{
+        public static int applesPrice = 0;          //здесь тип переменнной static
+
+        public static void addPrice(int applesPrice)
+        {
+            //напишите тут ваш код
+            Apple.applesPrice = Apple.applesPrice + applesPrice;      //тип переменнной static, поэтому здесь вместо this пишем Apple
+        }
+    }
+}
+
+-----------------------------------------------------------------------
+
+/*
+Чётные и нечётные циферки
+
+Ввести с клавиатуры число. Определить, сколько в введенном числе четных цифр, а сколько нечетных.
+Если число делится без остатка на 2 (т. е. остаток равен нулю), значит оно четное.
+Увеличиваем на 1 счетчик четных цифр (статическая переменная even).
+Иначе число нечетное, увеличиваем счетчик нечетных цифр (статическая переменная odd).
+Вывести на экран сообщение: «Even: а Odd: b», где а — количество четных цифр, b — количество нечетных цифр.
+
+Пример для числа 4445:
+Even: 3 Odd: 1
+*/
+
+public class Solution {
+
+    public static int even;
+    public static int odd;
+
+    public static void main(String[] args) throws IOException {
+        //напишите тут ваш код
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String str = reader.readLine();
+
+        int num;
+
+        for(int i = 0; i < str.length(); i++)
+        {
+            num = Integer.parseInt(str.substring(i, i+1));
+            if ((num % 2) == 0)
+                Solution.even++;
+            else
+                Solution.odd++;
+        }
+
+        System.out.println("Even: " + Solution.even + " Odd: " + Solution.odd);
+    }
+}
+
+-----------------------------------------------------------------------
+
+/*
+Среднее арифметическое
+
+Вводить с клавиатуры числа и вычислить среднее арифметическое.
+Если пользователь ввел -1, вывести на экран среднее арифметическое всех чисел и завершить программу.
+-1 не должно учитываться.
+
+Пример для чисел 1 2 2 4 5 -1:
+2.8
+
+Пример для чисел 4 3 2 1 -1:
+2.5
+*/
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Solution {
+    public static void main(String[] args) throws Exception {
+        //напишите тут ваш код
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        boolean flag = true;
+        double sum = 0;
+        double temp = 0;
+        int count = -1;
+
+        while (flag)
+        {
+            sum = sum + temp;
+            count++;
+
+            temp = Integer.parseInt(reader.readLine());
+            if (temp == -1)
+                flag = false;
+        }
+
+        if (count > 0)
+            System.out.println(sum / (double)count);
+        else
+            System.out.println((double)sum);
+    }
+}
+
+-----------------------------------------------------------------------
+
+/*
+Вызов конструктора из конструктора
+*/
+
+public class Circle {
+
+    public double x;
+    public double y;
+    public double radius;
+
+    public Circle(double x, double y, double radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
+    public Circle(double x, double y) {
+        //напишите тут ваш код
+        this(x, y, 10);                           //здесь вызывается верхний конструктор с тремя параметрами
+    }
+
+    public Circle() {
+        this(5, 5, 1);                            // здесь тоже
+    }
+
+    public static void main(String[] args) {
+        Circle circle = new Circle();
+        System.out.println(circle.x + " " + circle.y + " " + circle.radius);
+        Circle anotherCircle = new Circle(10, 5);
+        System.out.println(anotherCircle.x + " " + anotherCircle.y + " " + anotherCircle.radius);
+    }
+}
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
